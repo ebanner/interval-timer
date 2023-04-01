@@ -12,6 +12,7 @@ import HealthKit
 struct ContentView: View {
     /* Digital crown */
     @State var scrollAmount = 0.0
+    @State private var prevScrollAmount = 0.0
     
     @State private var clock = 0
     @State private var interval = 5
@@ -61,18 +62,24 @@ struct ContentView: View {
             )
             .onAppear {
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-                    /* Increment the clock */
-                    clock += 1
-                    
-                    /* Set interval from scrollAmount */
-                    interval = Int(scrollAmount) + 5
-                    
-                    if clock >= interval {
-                        /* Do a buzz */
-                        WKInterfaceDevice.current().play(.success)
+                    if scrollAmount == prevScrollAmount {
+                        /* Increment the clock */
+                        clock += 1
                         
-                        /* Reset the clock */
+                        /* Set interval from scrollAmount */
+                        interval = Int(scrollAmount) + 5
+                        
+                        if clock >= interval {
+                            /* Do a buzz */
+                            WKInterfaceDevice.current().play(.success)
+                            
+                            /* Reset the clock */
+                            clock = 0
+                        }
+                    } else {
+                        /* We scrolled so reset the clock */
                         clock = 0
+                        prevScrollAmount = scrollAmount
                     }
                 }
                 
