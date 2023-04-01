@@ -42,6 +42,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		5F931C1D29D88FF1007BB2A5 /* Embed ExtensionKit Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(EXTENSIONS_FOLDER_PATH)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Embed ExtensionKit Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F931C3029D8900C007BB2A5 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5FA15E6929D76A0400247927 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -56,6 +76,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5F931C0B29D88B47007BB2A5 /* Watch Interval Timer Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Watch Interval Timer Watch App.entitlements"; sourceTree = "<group>"; };
+		5F931C4029D8A5A5007BB2A5 /* Watch-Interval-Timer-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Watch-Interval-Timer-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		5FA15E3A29D769FF00247927 /* Watch Interval Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Watch Interval Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FA15E4029D769FF00247927 /* Watch Interval Timer Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Watch Interval Timer Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FA15E4529D76A0000247927 /* Watch_Interval_TimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watch_Interval_TimerApp.swift; sourceTree = "<group>"; };
@@ -118,6 +140,8 @@
 		5FA15E4429D769FF00247927 /* Watch Interval Timer Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				5F931C4029D8A5A5007BB2A5 /* Watch-Interval-Timer-Watch-App-Info.plist */,
+				5F931C0B29D88B47007BB2A5 /* Watch Interval Timer Watch App.entitlements */,
 				5FA15E4529D76A0000247927 /* Watch_Interval_TimerApp.swift */,
 				5FA15E4729D76A0000247927 /* ContentView.swift */,
 				5FA15E4929D76A0300247927 /* Assets.xcassets */,
@@ -178,6 +202,8 @@
 				5FA15E3C29D769FF00247927 /* Sources */,
 				5FA15E3D29D769FF00247927 /* Frameworks */,
 				5FA15E3E29D769FF00247927 /* Resources */,
+				5F931C1D29D88FF1007BB2A5 /* Embed ExtensionKit Extensions */,
+				5F931C3029D8900C007BB2A5 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -464,13 +490,17 @@
 		5FA15E6729D76A0400247927 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Watch Interval Timer Watch App/Watch Interval Timer Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Watch Interval Timer Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = XLQPWS6LL9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Watch-Interval-Timer-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Watch Interval Timer";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
@@ -493,13 +523,17 @@
 		5FA15E6829D76A0400247927 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Watch Interval Timer Watch App/Watch Interval Timer Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Watch Interval Timer Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = XLQPWS6LL9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Watch-Interval-Timer-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Watch Interval Timer";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
@@ -526,6 +560,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XLQPWS6LL9;
 				INFOPLIST_KEY_CFBundleDisplayName = "Watch Interval Timer";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Edward-Banner.Watch-Interval-Timer";
@@ -541,6 +576,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XLQPWS6LL9;
 				INFOPLIST_KEY_CFBundleDisplayName = "Watch Interval Timer";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Edward-Banner.Watch-Interval-Timer";
