@@ -53,9 +53,9 @@ struct ContentView: View {
         Text(String(interval))
             .focusable(true)
             .digitalCrownRotation(
-                $scrollAmount,
-                from: -5,
-                through: 50,
+                $scrollAmount, /* 0-60 */
+                from: 0-5,
+                through: 60-5,
                 by: 1,
                 sensitivity: .medium,
                 isHapticFeedbackEnabled: true
