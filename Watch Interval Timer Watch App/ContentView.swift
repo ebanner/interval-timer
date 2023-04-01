@@ -10,68 +10,76 @@ import WatchKit
 import HealthKit
 
 struct ContentView: View {
+    /* Digital crown */
     @State var scrollAmount = 0.0
-    @State private var clock = 0.0
-    @State private var timer: Timer?
     
-    private func startTimer() {
-        timer = Timer.scheduledTimer(withTimeInterval: scrollAmount, repeats: true) { _ in
-            WKInterfaceDevice.current().play(.success)
+    @State private var clock = 0
+    @State private var interval = 5
+    
+    private func createAndStartWorkout() {
+        let healthStore = HKHealthStore()
+        let configuration = HKWorkoutConfiguration()
+        configuration.activityType = .running
+        configuration.locationType = .outdoor
+        
+        do {
+            let session = try HKWorkoutSession(
+                healthStore: healthStore,
+                configuration: configuration
+            )
+            let builder = session.associatedWorkoutBuilder()
+            builder.dataSource = HKLiveWorkoutDataSource(
+                healthStore: healthStore,
+                workoutConfiguration: configuration
+            )
+            
+            session.startActivity(with: Date())
+            builder.beginCollection(withStart: Date()) { (success, error) in
+                
+                guard success else {
+                    return // Handle errors.
+                }
+                
+                // Indicate that the session has started.
+            }
+        } catch {
+            return // Handle failure here.
         }
     }
     
-    
     var body: some View {
-        Text("Timer: \(scrollAmount+5) Clock: \(clock)")
+        /* Have a single text object show the interval */
+        Text(String(interval))
             .focusable(true)
             .digitalCrownRotation(
                 $scrollAmount,
                 from: -5,
                 through: 50,
                 by: 1,
-                sensitivity: .low,
+                sensitivity: .medium,
                 isHapticFeedbackEnabled: true
             )
             .onAppear {
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                    /* Increment the clock */
                     clock += 1
                     
-                    let limit = scrollAmount + 5
+                    /* Set interval from scrollAmount */
+                    interval = Int(scrollAmount) + 5
                     
-                    if clock >= limit {
+                    if clock >= interval {
+                        /* Do a buzz */
                         WKInterfaceDevice.current().play(.success)
+                        
+                        /* Reset the clock */
                         clock = 0
                     }
                 }
                 
+                /* Create and start the workout so we can run in the background */
                 if HKHealthStore.isHealthDataAvailable() {
-                    let healthStore = HKHealthStore()
-                    let configuration = HKWorkoutConfiguration()
-                    configuration.activityType = .running
-                    configuration.locationType = .outdoor
-                    
-                    do {
-                        
-                        let session = try HKWorkoutSession(healthStore: healthStore, configuration: configuration)
-                        let builder = session.associatedWorkoutBuilder()
-                        builder.dataSource = HKLiveWorkoutDataSource(
-                            healthStore: healthStore,
-                            workoutConfiguration: configuration
-                        )
-                        
-                        session.startActivity(with: Date())
-                        builder.beginCollection(withStart: Date()) { (success, error) in
-                            
-                            guard success else {
-                                return // Handle errors.
-                            }
-                            
-                            // Indicate that the session has started.
-                        }
-                    } catch {
-                        return // Handle failure here.
-                    }
-                } 
+                    createAndStartWorkout()
+                }
             }
         
     }
