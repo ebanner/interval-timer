@@ -1,4 +1,4 @@
-# apple-watch-interval-timer
+# interval-timer
 
 Stop rushing → slow down
 
