@@ -11,3 +11,11 @@ Have the watch buzz every X seconds. Adjustable from the Digital Crown
 ## Original use case
 
 I noticed myself rushing and that felt bad. I found I couldn't slow down on my own. So I used this app to have it so I only perform a single "action" until the next buzz. e.g. folding clothes, triaging tasks, navigating web pages
+
+## Flow
+
+1. Notice rushing
+2. Notice feels bad
+3. Use app to slow down
+4. Urge to rush is gone
+5. Notice feels good
