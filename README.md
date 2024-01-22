@@ -1,6 +1,6 @@
 # ⌚️ interval-timer
 
-Stop rushing → slow down
+Stop rushing → slow down 😌
 
 ## Features
 
